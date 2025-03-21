@@ -16,17 +16,28 @@
          display: flex;
          flex-direction: column;
          align-items: center;
-         background: url('{{ url_for('static', filename='bg1.jpg') }}') no-repeat center center fixed;
+         background: url('{{ url_for('static', filename='bg.webp') }}') no-repeat center center fixed;
          background-size: cover;
          margin: 0;
          min-height: 100vh;
      }
 
+     body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7); /* Adjust opacity (0 = fully transparent, 1 = fully visible) */
+    z-index: -1;
+}
+
      .header {
          width: 100%;
-         background: linear-gradient(to right, #fa65a3, #f8bbc5);
+         background: linear-gradient(to right, #fadadd, #f8bbc5);
          color: white;
-         padding: 15px 20px;
+         padding: 20px 0px;
          display: flex;
          align-items: center;
          justify-content: space-between;
@@ -69,7 +80,7 @@
 }
 
      #store-hash-button {
-         background: linear-gradient(to right, #ff758c, #ff5e62);
+        background-color: #000000;
          color: white;
          padding: 10px 20px;
          border-radius: 5px;
@@ -80,8 +91,8 @@
          margin-top: 15px;
      }
 
-     .store-hash-button:hover {
-         background: linear-gradient(to right, #ff5e62, #ff92c2);
+     #store-hash-button:hover {
+        background-color: #f8bbc5;
      }
 
      .girl-image {
@@ -93,9 +104,9 @@
 
      .footer {
          width: 100%;
-         background: linear-gradient(to right, #fa65a3, #f8bbc5);
+         background: linear-gradient(to right, #fadadd, #f8bbc5);
          color: white;
-         padding: 15px;
+         /* padding: 15px; */
          text-align: center;
          position: relative;
          top: -70px;
@@ -153,7 +164,7 @@
 <body>
     <div class="header">
         <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
-        <h1>Blockchain-Based Deepfake Video Detection Using Deep Learning</h1>
+        <h1>Blockchain Based Deepfake Video Detection Using Deep Learning</h1>
     </div>
 
     <div class="main-container">
@@ -214,7 +225,7 @@
                 </p>
             </div>
         </div>
-        <p class="copyright">© 2025 Blockchain Based Deepfake Video Detection System. All rights reserved.</p>
+        <p class="copyright">© 2025 Blockchain Based Deepfake Video Detection System Using Deep Learning. All rights reserved.</p>
     </div>
     <script>
         const CONTRACT_ADDRESS = '0x36432932F287A29B8E9178dB29F91290329B25a9'; 
