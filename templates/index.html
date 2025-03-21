@@ -1,130 +1,4 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Face Detection and Video Processing</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #e0f7fa; /* Light Cyan Background */
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            animation: fadeIn 1s ease;
-        }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        h1 {
-            color: #00796b; /* Dark Teal Color */
-            margin-bottom: 20px;
-            animation: slideDown 0.5s ease;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateY(-20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        form {
-            background: #ffffff; /* White Background */
-            padding: 30px; /* Increased padding for a larger form */
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-            margin-bottom: 20px;
-            animation: bounceIn 0.5s ease;
-        }
-
-        @keyframes bounceIn {
-            from {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        input[type="file"] {
-            margin: 10px 0;
-            border: 2px solid #00796b; /* Dark Teal Border */
-            border-radius: 5px;
-            padding: 15px; /* Increased padding for a larger input field */
-            width: 100%; /* Make the input full width */
-            max-width: 400px; /* Set a max width for better responsiveness */
-            transition: border-color 0.3s;
-            font-size: 16px; /* Larger font size */
-        }
-
-        input[type="file"]:focus {
-            border-color: #004d40; /* Darker Teal on Focus */
-            outline: none;
-        }
-
-        button {
-            background-color: #009688; /* Teal Color */
-            color: white;
-            border: none;
-            padding: 15px 30px; /* Increased padding for a larger button */
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            font-size: 18px; /* Larger font size */
-        }
-
-        button:hover {
-            background-color: #00796b; /* Darker Teal on Hover */
-            transform: translateY(-2px);
-        }
-
-        #loading {
-            display: none;
-            font-size: 20px;
-            color: #00796b; /* Dark Teal Color */
-            margin-top: 20px;
-            animation: fadeIn 1s ease;
-        }
-
-        .spinner {
-            display: none;
-            margin: 20px auto;
-            border: 8px solid #f3f3f3; /* Light grey */
-            border-top: 8px solid #009688; /* Teal */
-            border-radius: 50%;
-            width: 50px; /* Increased spinner size */
-            height: 50px; /* Increased spinner size */
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-    <script>
-        function showLoading() {
-            document.getElementById('loading').style.display = 'block';
-            document.querySelector('.spinner').style.display = 'block';
-        }
-    </script>
-</head>
-<body>
-    <h1>Upload a Video for Face Detection and Processing</h1>
-    <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
-        <input type="file" name="video_file" accept="video/mp4" required>
-        <button type="submit"><i class="fas fa-upload"></i> Upload and Analyze</button>
-    </form>
-    <div id="loading">Processing your video, please wait...</div>
-    <div class="spinner"></div>
-</body>
-</html> -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,33 +12,45 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: url("{{ url_for('static', filename='bg1.jpg') }}") no-repeat center center fixed;
+            background: url("{{ url_for('static', filename='bg.webp') }}") no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             min-height: 100vh;
         }
 
+        body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7); /* Adjust opacity (0 = fully transparent, 1 = fully visible) */
+    z-index: -1;
+}
+
         .header {
             width: 100%;
-            background: linear-gradient(to right, #fa65a3, #f8bbc5);
+            background: linear-gradient(to right, #fadadd, #f8bbc5);
             color: white;
-            padding: 15px 20px;
+            padding: 20px 0px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .header img {
             height: 50px;
-            margin-left: 50px;
+            margin-left: 20px;
         }
 
         .header h1 {
             flex: 1;
             text-align: center;
-            font-size: 20px;
-            margin-left: -100px;
+            font-size: 22px;
+            /* margin-left: -100px; */
+            margin: 0;
             font-weight: bold;
         }
 
@@ -181,8 +67,8 @@
     flex: 1;
     max-width: 450px;
     text-align: center;
-    margin-top: -150px;
-    top: -35px;
+    margin-top: -80px;
+    top: -25px;
 }
 
 .image-container {
@@ -191,7 +77,7 @@
 }
 
         .upload-box {
-            border: 2px dashed #007bff;
+            border: 2px dashed #000000;
             padding: 20px;
             border-radius: 5px;
             cursor: pointer;
@@ -202,12 +88,12 @@
             flex-direction: column;
         }
 
-        .upload-box:hover { background-color: #d7e8ff; }
+        .upload-box:hover { background-color: #f6f6f7; }
 
         .upload-box input { display: none; }
 
         .upload-button {
-            background-color: #007bff;
+            background-color: #000000;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -219,7 +105,7 @@
             gap: 8px;
         }
 
-        .upload-button:hover { background-color: #0056b3; }
+        .upload-button:hover { background-color: #f8bbc5; }
 
         #loading {
             display: none;
@@ -243,9 +129,9 @@
 
         .footer {
             width: 100%;
-            background: linear-gradient(to right, #fa65a3, #f8bbc5 );
+            background: linear-gradient(to right, #fadadd, #f8bbc5);
             color: white;
-            padding: 15px;
+            /* padding: 15px; */
             text-align: center;
             /* margin-top: auto; */
             box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
@@ -327,7 +213,7 @@
 
     <div class="header">
         <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
-        <h1>Blockchain-Based Deepfake Video Detection</h1>
+        <h1>Blockchain Based Deepfake Video Detection Using Deep Learning</h1>
     </div>
 
     <div class="container">
@@ -392,7 +278,7 @@
                 </p>
             </div>
         </div>
-        <p class="copyright">© 2025 Blockchain Based Deepfake Video Detection System. All rights reserved.</p>
+        <p class="copyright">© 2025 Blockchain Based Deepfake Video Detection System Using Deep Learning. All rights reserved.</p>
     </div>    
 
     <script>
@@ -445,5 +331,4 @@
 
 </body>
 </html>
-
 
